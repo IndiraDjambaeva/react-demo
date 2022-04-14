@@ -1,41 +1,60 @@
-import { useState } from "react"; 
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 import "./navbar.scss";
 import menuIcon from "../../images/menu.svg";
 
 function Navbar() {
-
   const [menuActive, setMenuActive] = useState(false);
 
   const showMenu = () => {
     setMenuActive(!menuActive);
-  }
-  
+  };
+
+  const menuItems = ["home", "about"];
+
   return (
     <nav className="navbar">
-     
       <div className="container navbar__container">
-        <a href="/" className="navbar__logo">
+        <Link to="/" className="navbar__logo">
           Logo
-        </a>
+        </Link>
         <button onClick={showMenu} className="navbar__toggle">
           <img src={menuIcon} alt="gfdf" />
         </button>
 
-
-      <div className={menuActive ? "navbar__menu--show" : "navbar__menu"}>
-          <a href="/" className="navbar__menu-link active">
+        <div
+          className={
+            menuActive ? " navbar__menu navbar__menu--show" : "navbar__menu"
+          }
+        >
+          <NavLink
+            onClick={showMenu}
+            to="/"
+            className="navbar__menu-link active"
+          >
             Home
-          </a>
-          <a href="/" className="navbar__menu-link">
+          </NavLink>
+          <NavLink 
+          onClick={showMenu} 
+          to="/about" 
+          className="navbar__menu-link">
             About
-          </a>
-          <a href="/" className="navbar__menu-link">
+          </NavLink>
+          <NavLink
+            onClick={showMenu}
+            to="/services"
+            className="navbar__menu-link"
+          >
             Services
-          </a>
-          <a href="/" className="navbar__menu-link">
-            Contacts
-          </a>
+          </NavLink>
+          <NavLink
+            onClick={showMenu}
+            to="/contact"
+            className="navbar__menu-link"
+          >
+            Contact
+          </NavLink>
         </div>
       </div>
     </nav>

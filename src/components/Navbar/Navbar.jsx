@@ -11,7 +11,28 @@ function Navbar() {
     setMenuActive(!menuActive);
   };
 
-  const menuItems = ["home", "about"];
+  const menuItems = [
+    {
+      id: 1,
+      menu: "home",
+      link: "/",
+    },
+    {
+      id: 2,
+      menu: "about",
+      link: "about",
+    },
+    {
+      id: 3,
+      menu: "services",
+      link: "services",
+    },
+    {
+      id: 4,
+      menu: "contact",
+      link: "contact",
+    },
+  ];
 
   return (
     <nav className="navbar">
@@ -28,33 +49,18 @@ function Navbar() {
             menuActive ? " navbar__menu navbar__menu--show" : "navbar__menu"
           }
         >
-          <NavLink
-            onClick={showMenu}
-            to="/"
-            className="navbar__menu-link active"
-          >
-            Home
-          </NavLink>
-          <NavLink 
-          onClick={showMenu} 
-          to="/about" 
-          className="navbar__menu-link">
-            About
-          </NavLink>
-          <NavLink
-            onClick={showMenu}
-            to="/services"
-            className="navbar__menu-link"
-          >
-            Services
-          </NavLink>
-          <NavLink
-            onClick={showMenu}
-            to="/contact"
-            className="navbar__menu-link"
-          >
-            Contact
-          </NavLink>
+          {menuItems.map((menuItem) => {
+            return (
+              <NavLink
+                onClick={showMenu}
+                to={menuItem.link}
+                className="navbar__menu-link active"
+                key={menuItem.id}
+              >
+                {menuItem.menu}
+              </NavLink>
+            );
+          })}
         </div>
       </div>
     </nav>
